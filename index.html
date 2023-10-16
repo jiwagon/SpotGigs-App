@@ -1,0 +1,23 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon API in JavaScript!</title>
+</head>
+<body>
+    <h1>Pokemon Information</h1>
+    <label for="pokemonSelect">Select a Pokemon:</label>
+    <select id="pokemonSelect" onchange="showPokemonInfo(this.value)">
+        <!-- Options are dynamically populated with the list of pokemon names retrieved-->
+    </select>
+    <br><br>
+
+    <div id="pokemonInfo"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+

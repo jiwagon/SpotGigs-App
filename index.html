@@ -4,12 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Weather Forecast</title>
-    <link rel="stylesheet" type="text/css" src="/Users/zhangji/Desktop/IST411_HW/SpotGigs/SpotGigs-App/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css"> 
 </head>
-<body>
-    <h1>Music Recommendations based on Weather Forecast</h1>
-    <h3>Only for today and the next 7 days!</h3>
+<body style="background-color:#abcdef;">
+    <header>
+        <h1>Music Recommendations based on Weather Forecast</h1>   
+        <h3>Find out the weather forecasts and get ready with a brand new playlist for the week!</h3>        
+    </header>
+    <h3 class="special-background">You can only search for weather forecasts from today and the next 7 days. 
+        <br><br>
+        We are not dwelling in the past, but also not jumping too ahead of ourselves, alright!
+        <br><br>
+    </h3>
+    
+    <!-- Interaction 4: User changes background color by selecting a color from the color spectrum -->
+    <input class="color-picker-container" type="color" id="colorPicker">
+    <br><br>
+    <button class="color-change-button" onclick="changeBackgroundColor()"> Apply Color </button> 
 
+<!-- Interaction 1: User selects a location via drop-down menu -->
 <label for="locations">Select Location:</label>
 <select id="locations">
     <option value="State College, PA">State College, PA</option>
@@ -23,15 +36,18 @@
     <option value="Austin, TX">Austin, TX</option>
     <option value="Honolulu, HI">Honolulu, HI</option> 
 </select>
-<br><br>
 
 <label for="date">Enter Date (yyyy-mm-dd, e.g. 2012-03-14):</label>
 <br><br>
-<input type="text" id="date" name="date"> <!-- Removed value to ensure it starts empty -->
-<button onclick="setToday()">TODAY</button> <!-- Added TODAY button -->
+<!-- Interaction 2: User enters data input field -->
+<input type="text" id="date" name="date" class="input-field"> 
+
+<!-- Interaction: User clicks button to automatic fill out today's date and get weather forecast & music recommendations -->
+<button class="buttonToday" onclick="setToday()">TODAY</button>
 <br><br><br>
 
-<button onclick="getWeatherBasedOnDate()">Get Weather Forecast!</button>
+<!-- Interaction: User clicks button to get weather forecast & music recommendations -->
+<button class="button" onclick="getWeatherBasedOnDate()">Get Weather Forecast!</button>
 <br><br>
 
 <div id="weather">

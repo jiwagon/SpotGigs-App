@@ -1,6 +1,101 @@
 header {
-    background: #291dae; /* Dark header background. */
-    color: #ffffff; /* White text color. */
-    padding: 10px 0; /* Some vertical padding for spacing. */
-    text-align: center; /* Center the header content. */
+    background: #000000; /* header background: black */
+    color: #1db954; /* text color: spotify green */
+    padding: 10px 0; /* vertical padding for spacing */
+    text-align: center; /* content alignment */
+    margin-bottom: 0;
 }
+
+.special-background {
+    background-color: #1db954;
+    color: #000000;
+    padding: 20px 0; 
+    text-align: left;
+    margin-top: 0;
+}
+
+.color-change-button {
+    float: right; 
+    color: #fff;
+    background-color: #0b5a38; 
+    border: none;
+    padding: 5px 10px; 
+    margin: 5px 0;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px; 
+    cursor: pointer;
+    border-radius: 5px; 
+    margin-top: 0;
+} 
+
+.color-picker-container {
+    text-align: center;
+    float: right;
+}
+
+/*default*/
+.button {
+    display: inline-block;
+    color: #fff;
+    background-color: #1db954;
+    border: none;
+    padding: 15px 25px; 
+    margin: 5px 0;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/*variant for hovering*/
+.button:hover {
+    background-color: #45a049;
+}
+
+/*variant for clicking*/
+.button:active {
+    background-color: #2e7b32;
+    transform: translateY(2px);
+}
+
+.buttonToday {
+    display: inline-block;
+    color: #fff;
+    background-color: #1db954; 
+    border: none;
+    padding: 10px 20px; 
+    margin: 5px 0;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px; 
+    cursor: pointer;
+    border-radius: 5px; 
+}
+
+.buttonToday:hover {
+    background-color: #45a049;
+}
+
+.buttonToday:active {
+    background-color: #2e7b32; 
+    transform: translateY(2px); 
+}
+
+.input-field {
+    padding: 10px 20px; 
+    font-size: 16px; 
+    margin: 5px 0; 
+    text-align: center;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+}
+
+body {
+    font-family: 'Circular', sans-serif;
+    font-style: normal;
+    font-weight: 400; /* Standard weight */
+}
+
+  

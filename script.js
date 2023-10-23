@@ -19,7 +19,7 @@ function getAccessToken(clientId, clientSecret, callback) {
     // Make POST request
     request.open("POST", "https://accounts.spotify.com/api/token", true);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRequestHeader("Authorization", "Basic " + btoa(clientId + ":" + clientSecret)); // Encode and set the authorization header
+    request.setRequestHeader("Authorization", "Basic " + btoa(clientId + ":" + clientSecret));
 
     // Launch the request with required parameters
     request.send("grant_type=client_credentials");
@@ -35,7 +35,8 @@ function getSpotifyRecommendations(accessToken, genre) {
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText);
-            createRecommendationsTable(data.tracks); // Create a table with the track data
+            // Create table with tracks data
+            createRecommendationsTable(data.tracks);
         }
     };
 
@@ -66,7 +67,7 @@ function createRecommendationsTable(tracks) {
 
         // Create and append the artist data
         let artistCell = document.createElement('td');
-        let artistText = document.createTextNode(track.artists[0].name); // Assuming one artist per track
+        let artistText = document.createTextNode(track.artists[0].name); // Assumes 1 artist per track
         artistCell.appendChild(artistText);
         newRow.appendChild(artistCell);
 
@@ -113,8 +114,8 @@ function getWeatherBasedOnDate() {
     request.open("GET", apiUrl, true);
     
     request.onreadystatechange = function() {
-        if (request.readyState === 4) { // 4: request finished and response is ready
-            if (request.status === 200) { // request was successful
+        if (request.readyState === 4) { 
+            if (request.status === 200) {
                 data = JSON.parse(request.responseText);
                 forecastUrl = data.properties.forecast;
                 
@@ -177,20 +178,19 @@ function displayWeather(data) {
             let windText = document.createTextNode(`Wind: ${forecast.windSpeed} ${forecast.windDirection}`);
             let forecastText = document.createTextNode(`Forecast: ${forecast.shortForecast}`);
 
-            // Append text nodes to each corresponding element
+            // Append text nodes
             nameElement.appendChild(nameText);
             temperatureElement.appendChild(temperatureText);
             windElement.appendChild(windText);
             forecastElement.appendChild(forecastText);
 
-            // Select the weatherInfo div and append elements to it for display
+            // Select the weather info and append elements for display
             let weatherInfo = document.getElementById('weather');
             weatherInfo.appendChild(nameElement);
             weatherInfo.appendChild(temperatureElement);
             weatherInfo.appendChild(windElement);
             weatherInfo.appendChild(forecastElement);
 
-            // Check the weather condition
             var condition = forecast.shortForecast.toLowerCase();
 
             // Set conditions using words from weather data and get Spotify recommendations for music
@@ -247,3 +247,10 @@ function setToday() {
     document.getElementById('date').value = formattedToday;
     getWeatherBasedOnDate();
 }
+
+// Interaction 3: Function to change webpage's background color
+function changeBackgroundColor() {
+    let color = document.getElementById('colorPicker').value;
+    document.body.style.backgroundColor = color;
+}
+

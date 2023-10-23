@@ -1,23 +1,59 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon API in JavaScript!</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Forecast</title>
 </head>
 <body>
-    <h1>Pokemon Information</h1>
-    <label for="pokemonSelect">Select a Pokemon:</label>
-    <select id="pokemonSelect" onchange="showPokemonInfo(this.value)">
-        <!-- Options are dynamically populated with the list of pokemon names retrieved-->
-    </select>
-    <br><br>
 
-    <div id="pokemonInfo"></div>
-    
-    <script src="script.js"></script>
+<h1>Weather Forecast</h1>
+
+<!-- User input for date -->
+<label for="locations">Select Location:</label>
+<select id="locations">
+    <option value="State College, PA">State College, PA</option>
+    <option value="Washington, DC">Washington, DC</option>
+    <option value="Boston, MA">Boston, MA</option>
+    <option value="Philadelphia, PA">Philadelphia, PA</option>
+    <option value="New York, NY">New York, NY</option>
+    <option value="Miami, FL">Miami, FL</option>
+    <option value="Los Angeles, CA">Los Angeles, CA</option>
+    <option value="San Francisco, CA">San Francisco, CA</option>
+    <option value="Austin, TX">Austin, TX</option>
+    <option value="Honolulu, HI">Honolulu, HI</option> 
+</select>
+
+<br><br>
+<label for="date">Enter date (mm-dd-yyyy):</label>
+<br><br>
+<input type="text" id="date" name="date"> <!-- Removed value to ensure it starts empty -->
+<button onclick="setToday()">TODAY</button> <!-- Added TODAY button -->
+<br><br><br>
+
+<button onclick="getWeatherBasedOnDate()">Get Weather</button>
+<br><br>
+
+<div id="weather">
+  <!-- Weather data will be inserted here -->
+</div>
+
+<h2>Music Recommendations</h2>
+<table id="tracksTable" border="1">
+    <thead>
+        <tr>
+            <th>Track</th>
+            <th>Artist</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Rows will be added here by JavaScript -->
+    </tbody>
+</table>
+<div id="music">
+    <!-- Music recommendations will be inserted here -->
+  </div>
+
+<script src="script.js"></script>
 </body>
 </html>
-

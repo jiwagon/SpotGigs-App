@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allows the items to wrap onto the next line if the container is too small */
+}
+
+.weather-container, .music-container {
+    flex-basis: 45%; /* Assigns the initial size for each container */
+    margin: 2%; /* Adds a little space around each container */
+}
+
+/* Styles for the weather section */
+.weather-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Styles for the music section */
+.music-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Optional: Add styles for the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}

@@ -7,7 +7,8 @@
 </head>
 <body>
 
-<h1>Weather Forecast</h1>
+<h1>Music Recommendations based on Weather Forecast</h1>
+<h3>Only for today and the next 7 days!</h3>
 
 <!-- User input for date -->
 <label for="locations">Select Location:</label>
@@ -25,13 +26,13 @@
 </select>
 
 <br><br>
-<label for="date">Enter date (mm-dd-yyyy):</label>
+<label for="date">Enter Date (yyyy-mm-dd, e.g. 2012-03-14):</label>
 <br><br>
 <input type="text" id="date" name="date"> <!-- Removed value to ensure it starts empty -->
 <button onclick="setToday()">TODAY</button> <!-- Added TODAY button -->
 <br><br><br>
 
-<button onclick="getWeatherBasedOnDate()">Get Weather</button>
+<button onclick="getWeatherBasedOnDate()">Get Weather Forecast!</button>
 <br><br>
 
 <div id="weather">

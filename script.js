@@ -1,3 +1,4 @@
+// Supposedly discreet credentials key to access Spotify APIs
 const clientId = "f3a5f2acd2d8481b9d23574b0600eb49";
 const clientSecret = "12442bf082274f029cbe7729db5245f4";
 
@@ -15,7 +16,7 @@ function getAccessToken(clientId, clientSecret, callback) {
         }
     };
 
-    // POST request
+    // Make POST request
     request.open("POST", "https://accounts.spotify.com/api/token", true);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRequestHeader("Authorization", "Basic " + btoa(clientId + ":" + clientSecret)); // Encode and set the authorization header
@@ -40,7 +41,7 @@ function getSpotifyRecommendations(accessToken, genre) {
 
     request.send();
 }
-// Get the access token and retrieve the Spotify API request
+// Get access token and retrieve Spotify API request
 getAccessToken(clientId, clientSecret, getSpotifyRecommendations);
 
 
@@ -52,18 +53,18 @@ function createRecommendationsTable(tracks) {
     // Clear table
     tableBody.innerHTML = '';
 
-    // Iterate over the tracks and create a new row for each one
+    // Loop through the tracks and create a new row for each one
     tracks.forEach(function(track) {
         // Create a new table row
         let newRow = document.createElement('tr');
 
-        // Create and append the 'name' data
+        // Create and append the track name data
         let nameCell = document.createElement('td');
         let nameText = document.createTextNode(track.name);
         nameCell.appendChild(nameText);
         newRow.appendChild(nameCell);
 
-        // Create and append the 'artist' data
+        // Create and append the artist data
         let artistCell = document.createElement('td');
         let artistText = document.createTextNode(track.artists[0].name); // Assuming one artist per track
         artistCell.appendChild(artistText);
@@ -74,22 +75,20 @@ function createRecommendationsTable(tracks) {
     });
 }
 
-// Function to make an API call to NWS based on the user's date and location input
+// Function to make an NWS API call based on selected location and date input
 function getWeatherBasedOnDate() {
     let dateInput = document.getElementById('date').value;
 
     // Validate date format
     let dateFormat = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateInput || !dateInput.match(dateFormat)) {
+
+        // Webpage error notification to user
         alert('Please enter a valid date in yyyy-mm-dd format.');
         return;
     }
 
-    // Hardcoded latitude and longitude for the example; you might want to get these from user input or geolocation API.
-    //var latitude = '39.7456'; // for example, Washington D.C. latitude
-    //var longitude = '-97.0892'; // for example, Washington D.C. longitude
-
-    // Map the cities to their respective latitude and longitude
+    // List of cities and their latitude and longitude info
     var locations = {
         "State College, PA": {latitude: '40.7934', longitude: '-77.8600'},
         "Washington, DC": {latitude: '38.8951', longitude: '-77.0369'},
@@ -103,17 +102,13 @@ function getWeatherBasedOnDate() {
         "Honolulu, HI": {latitude: '21.3069', longitude: '-157.8583'}
     };
 
-    // Get the selected location
+    // Get the selected location and its latitude and longitude
     let selectedLocation = document.getElementById('locations').value;
-
-    // Get the corresponding latitude and longitude from the locations object
     let coords = locations[selectedLocation];
     let latitude = coords.latitude;
     let longitude = coords.longitude;
 
-    // Get the NWS API endpoint for the specific point
     let apiUrl = 'https://api.weather.gov/points/' + latitude + ',' + longitude;
-
     let request = new XMLHttpRequest();
     request.open("GET", apiUrl, true);
     
@@ -127,8 +122,8 @@ function getWeatherBasedOnDate() {
                 forecastRequest.open("GET", forecastUrl, true);
 
                 forecastRequest.onreadystatechange = function() {
-                    if (forecastRequest.readyState === 4) { // 4: request finished and response is ready
-                        if (forecastRequest.status === 200) { // request was successful
+                    if (forecastRequest.readyState === 4) {
+                        if (forecastRequest.status === 200) { 
                             forecastData = JSON.parse(forecastRequest.responseText);
                             displayWeather(forecastData);
                         } else {
@@ -148,10 +143,10 @@ function getWeatherBasedOnDate() {
     request.send();
 };
 
-// Function to display weather - this needs to be updated to match the data structure of the NWS API response
+// Function to display weather
 function displayWeather(data) {
-    // Log data to console for debugging
-    console.log(data);
+    // for debugging
+    //console.log(data);
 
     // Get user input date
     let dateInput = document.getElementById('date').value;
@@ -165,13 +160,8 @@ function displayWeather(data) {
         });
 
         if (matchingPeriods.length > 0) {
-            // If there's more than one period for the day (e.g., a separate forecast for night), you could loop over them or just take the first one.
+            // If there's more than one period for the day, the algorithm takes the first weather status
             let forecast = matchingPeriods[0];
-            
-            // Construct the display string
-            // let displayString = forecast.name + ': ' + forecast.temperature + ' ' + forecast.temperatureUnit;
-            // displayString += ', ' + forecast.windSpeed + ' ' + forecast.windDirection;
-            // displayString += ', ' + forecast.shortForecast;
 
             document.getElementById('weather').innerHTML = "";
 
@@ -235,50 +225,25 @@ function displayWeather(data) {
                     getSpotifyRecommendations(token, "pop");
                 });
             }
-            
-            // Insert the weather data into the page
-            //document.getElementById('weather').textContent = displayString;
-        } else {
+        } 
+        else {
             alert('No weather data available for this date.');
         }
-    } else {
-        alert('No weather data available.');
-    }
-    if (data.properties.periods) {
-        var matchingPeriods = data.properties.periods.filter(function(period) {
-            var periodDate = period.startTime.split('T')[0];
-            return periodDate === dateInput;
-        });
-
-        if (matchingPeriods.length > 0) {
-            var forecast = matchingPeriods[0];
-
-            // Check if the weather is sunny
-            if (forecast.shortForecast.toLowerCase().includes("sunny")) {
-                // If sunny, get Spotify recommendations
-                getAccessToken(clientId, clientSecret, getSpotifyRecommendations);
-            }
-        } else {
-            alert('No weather data available for this date.');
-        }
-    } else {
+    } 
+    else {
         alert('No weather data available.');
     }
 }
 
-// Function to set the date input to today's date
+// Function to set the date input to TODAY's date
 function setToday() {
     var today = new Date();
     var yyyy = today.getFullYear();
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
     var dd = String(today.getDate()).padStart(2, '0');
 
-    var formattedToday = `${yyyy}-${mm}-${dd}`; // Constructs date in yyyy-mm-dd format
+    var formattedToday = `${yyyy}-${mm}-${dd}`;
     
     document.getElementById('date').value = formattedToday;
-    getWeatherBasedOnDate(); // Automatically fetch the weather for today's date
+    getWeatherBasedOnDate();
 }
-
-// Call getWeatherBasedOnDate when the web page loads to display weather for the current date initially
-window.onload = function() {
-};

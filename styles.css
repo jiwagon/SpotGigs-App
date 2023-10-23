@@ -1,0 +1,6 @@
+header {
+    background: #291dae; /* Dark header background. */
+    color: #ffffff; /* White text color. */
+    padding: 10px 0; /* Some vertical padding for spacing. */
+    text-align: center; /* Center the header content. */
+}

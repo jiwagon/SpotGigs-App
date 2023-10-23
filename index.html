@@ -4,13 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Weather Forecast</title>
+    <link rel="stylesheet" type="text/css" src="/Users/zhangji/Desktop/IST411_HW/SpotGigs/SpotGigs-App/styles.css">
 </head>
 <body>
+    <h1>Music Recommendations based on Weather Forecast</h1>
+    <h3>Only for today and the next 7 days!</h3>
 
-<h1>Music Recommendations based on Weather Forecast</h1>
-<h3>Only for today and the next 7 days!</h3>
-
-<!-- User input for date -->
 <label for="locations">Select Location:</label>
 <select id="locations">
     <option value="State College, PA">State College, PA</option>
@@ -24,8 +23,8 @@
     <option value="Austin, TX">Austin, TX</option>
     <option value="Honolulu, HI">Honolulu, HI</option> 
 </select>
-
 <br><br>
+
 <label for="date">Enter Date (yyyy-mm-dd, e.g. 2012-03-14):</label>
 <br><br>
 <input type="text" id="date" name="date"> <!-- Removed value to ensure it starts empty -->
@@ -36,10 +35,12 @@
 <br><br>
 
 <div id="weather">
-  <!-- Weather data will be inserted here -->
+  <!-- Weather info -->
 </div>
 
-<h2>Music Recommendations</h2>
+<h3>Music Recommendations</h3>
+
+<!-- Table to display Spotify music recommendations -->
 <table id="tracksTable" border="1">
     <thead>
         <tr>
@@ -48,11 +49,12 @@
         </tr>
     </thead>
     <tbody>
-        <!-- Rows will be added here by JavaScript -->
+        <!-- More rows -->
     </tbody>
 </table>
+
 <div id="music">
-    <!-- Music recommendations will be inserted here -->
+    <!-- Music recommendations -->
   </div>
 
 <script src="script.js"></script>
